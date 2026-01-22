@@ -5,7 +5,7 @@ Course Work for OIM3690
 This is my course repository for OIM3690.
 
 ## About Me
-Hazuri Dhillon 
+*Hazuri* **Dhillon** 
 
 ## Links
 (https://hazuridhillon.github.io)
