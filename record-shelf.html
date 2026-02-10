@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Record Shelf — Playlists</title>
+  <link rel="stylesheet" href="css/records.css">
+</head>
+<body>
+  <header>
+    <h1>My Record Shelf</h1>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="record-shelf.html">Record Shelf</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="shelf" aria-label="Record shelf">
+      <h2 class="sr-only">Records</h2>
+
+      <!-- Lana Del Rey -->
+      <article class="record" id="lana">
+        <figure>
+          <img alt="Lana Del Rey record" src="images/lana.svg" aria-hidden="true" class="album-art">
+          <figcaption>
+            <h3>Lana Del Rey</h3>
+            <p>Dreamy alt-pop</p>
+          </figcaption>
+        </figure>
+
+        <details>
+          <summary>Open record</summary>
+          <div class="tracks">
+            <ol>
+              <li>
+                <button class="play-track" data-src="audio/lana-young-and-beautiful.mp3">Young and Beautiful — play</button>
+              </li>
+              <li>
+                <button class="play-track" data-src="audio/lana-video-games.mp3">Video Games — play</button>
+              </li>
+            </ol>
+          </div>
+        </details>
+      </article>
+
+      <!-- Beabadoobee -->
+      <article class="record" id="beaba">
+        <figure>
+          <img alt="Beabadoobee record" src="images/beabadoobee.svg" aria-hidden="true" class="album-art">
+          <figcaption>
+            <h3>Beabadoobee</h3>
+            <p>Indie bedroom rock</p>
+          </figcaption>
+        </figure>
+
+        <details>
+          <summary>Open record</summary>
+          <div class="tracks">
+            <ol>
+              <li>
+                <button class="play-track" data-src="audio/beaba-sample1.mp3">Coffee — play</button>
+              </li>
+              <li>
+                <button class="play-track" data-src="audio/beaba-sample2.mp3">If You Want To — play</button>
+              </li>
+            </ol>
+          </div>
+        </details>
+      </article>
+
+      <!-- Olivia Dean -->
+      <article class="record" id="olivia">
+        <figure>
+          <img alt="Olivia Dean record" src="images/olivia.svg" aria-hidden="true" class="album-art">
+          <figcaption>
+            <h3>Olivia Dean</h3>
+            <p>Soulful pop</p>
+          </figcaption>
+        </figure>
+
+        <details>
+          <summary>Open record</summary>
+          <div class="tracks">
+            <ol>
+              <li>
+                <button class="play-track" data-src="audio/olivia-sample1.mp3">The Hardest Part — play</button>
+              </li>
+              <li>
+                <button class="play-track" data-src="audio/olivia-sample2.mp3">Where Do We Go From Here — play</button>
+              </li>
+            </ol>
+          </div>
+        </details>
+      </article>
+
+      <!-- Clairo -->
+      <article class="record" id="clairo">
+        <figure>
+          <img alt="Clairo record" src="images/clairo.svg" aria-hidden="true" class="album-art">
+          <figcaption>
+            <h3>Clairo</h3>
+            <p>Lo-fi pop</p>
+          </figcaption>
+        </figure>
+
+        <details>
+          <summary>Open record</summary>
+          <div class="tracks">
+            <ol>
+              <li>
+                <button class="play-track" data-src="audio/clairo-sample1.mp3">Bags — play</button>
+              </li>
+              <li>
+                <button class="play-track" data-src="audio/clairo-sample2.mp3">Sofia — play</button>
+              </li>
+            </ol>
+          </div>
+        </details>
+      </article>
+
+    </section>
+
+    <aside class="player-area" aria-label="Now playing">
+      <h2 class="sr-only">Now Playing</h2>
+      <div id="now-playing" aria-live="polite">No track playing</div>
+      <audio id="audio-player" controls preload="none">
+        <p>Your browser does not support the audio element.</p>
+      </audio>
+    </aside>
+
+  </main>
+
+  <footer>
+    <p>Built with semantic HTML — click a record to open tracks.</p>
+  </footer>
+
+  <script src="js/records.js" defer></script>
+</body>
+</html>
