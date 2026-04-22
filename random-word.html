@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Random Word</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;padding:1rem}
+    button{margin-right:0.5rem;padding:.5rem 1rem}
+    #word{margin-top:1rem;font-size:1.25rem;font-weight:600}
+    #list{margin-top:1rem}
+  </style>
+</head>
+<body>
+  <h1>Random Word</h1>
+  <button id="singleBtn">Get Random Word</button>
+  <button id="fiveBtn">Get 5 Random Words</button>
+
+  <div id="status" aria-live="polite"></div>
+  <div id="word"></div>
+  <ul id="list"></ul>
+
+  <script>
+    const singleBtn = document.getElementById('singleBtn');
+    const fiveBtn = document.getElementById('fiveBtn');
+    const status = document.getElementById('status');
+    const wordDiv = document.getElementById('word');
+    const list = document.getElementById('list');
+    const endpoint = 'https://oim.108122.xyz/words/random';
+
+    async function parseResponse(res){
+      const ct = (res.headers.get('content-type') || '').toLowerCase();
+      if (ct.includes('application/json')) {
+        const json = await res.json();
+        if (typeof json === 'string') return json;
+        if (Array.isArray(json)) return json[0];
+        if (json && typeof json === 'object') {
+          if ('word' in json) return json.word;
+          return JSON.stringify(json);
+        }
+        return String(json);
+      } else {
+        return await res.text();
+      }
+    }
+
+    async function fetchWord(){
+      singleBtn.disabled = true;
+      fiveBtn.disabled = true;
+      status.textContent = 'loading...';
+      wordDiv.textContent = '';
+      list.innerHTML = '';
+      try{
+        const res = await fetch(endpoint);
+        if(!res.ok) throw new Error('Network response was not ok: ' + res.status);
+        const w = await parseResponse(res);
+        wordDiv.textContent = String(w);
+        return w;
+      } catch(err){
+        wordDiv.textContent = 'Error: ' + (err.message || err);
+        return null;
+      } finally{
+        status.textContent = '';
+        singleBtn.disabled = false;
+        fiveBtn.disabled = false;
+      }
+    }
+
+    async function fetchFive(){
+      singleBtn.disabled = true;
+      fiveBtn.disabled = true;
+      status.textContent = 'loading...';
+      wordDiv.textContent = '';
+      list.innerHTML = '';
+      try{
+        const words = [];
+        for(let i=0;i<5;i++){
+          const res = await fetch(endpoint);
+          if(!res.ok) throw new Error('Fetch failed: ' + res.status);
+          const w = await parseResponse(res);
+          words.push(String(w));
+        }
+        for(const w of words){
+          const li = document.createElement('li');
+          li.textContent = w;
+          list.appendChild(li);
+        }
+        return words;
+      } catch(err){
+        wordDiv.textContent = 'Error: ' + (err.message || err);
+        return null;
+      } finally{
+        status.textContent = '';
+        singleBtn.disabled = false;
+        fiveBtn.disabled = false;
+      }
+    }
+
+    singleBtn.addEventListener('click', fetchWord);
+    fiveBtn.addEventListener('click', fetchFive);
+  </script>
+</body>
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Random Word</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;padding:1rem}
+    button{margin-right:0.5rem;padding:.5rem 1rem}
+    #word{margin-top:1rem;font-size:1.25rem;font-weight:600}
+    #list{margin-top:1rem}
+  </style>
+</head>
+<body>
+  <h1>Random Word</h1>
+  <button id="singleBtn">Get Random Word</button>
+  <button id="fiveBtn">Get 5 Random Words</button>
+
+  <div id="status" aria-live="polite"></div>
+  <div id="word"></div>
+  <ul id="list"></ul>
+
+  <script>
+    const singleBtn = document.getElementById('singleBtn');
+    const fiveBtn = document.getElementById('fiveBtn');
+    const status = document.getElementById('status');
+    const wordDiv = document.getElementById('word');
+    const list = document.getElementById('list');
+    const endpoint = 'https://oim.108122.xyz/words/random';
+
+    async function parseResponse(res){
+      const ct = (res.headers.get('content-type') || '').toLowerCase();
+      if (ct.includes('application/json')) {
+        const json = await res.json();
+        if (typeof json === 'string') return json;
+        if (Array.isArray(json)) return json[0];
+        if (json && typeof json === 'object') {
+          if ('word' in json) return json.word;
+          return JSON.stringify(json);
+        }
+        return String(json);
+      } else {
+        return await res.text();
+      }
+    }
+
+    async function fetchWord(){
+      singleBtn.disabled = true;
+      fiveBtn.disabled = true;
+      status.textContent = 'loading...';
+      wordDiv.textContent = '';
+      list.innerHTML = '';
+      try{
+        const res = await fetch(endpoint);
+        if(!res.ok) throw new Error('Network response was not ok: ' + res.status);
+        const w = await parseResponse(res);
+        wordDiv.textContent = String(w);
+        return w;
+      } catch(err){
+        wordDiv.textContent = 'Error: ' + (err.message || err);
+        return null;
+      } finally{
+        status.textContent = '';
+        singleBtn.disabled = false;
+        fiveBtn.disabled = false;
+      }
+    }
+
+    async function fetchFive(){
+      singleBtn.disabled = true;
+      fiveBtn.disabled = true;
+      status.textContent = 'loading...';
+      wordDiv.textContent = '';
+      list.innerHTML = '';
+      try{
+        const words = [];
+        for(let i=0;i<5;i++){
+          const res = await fetch(endpoint);
+          if(!res.ok) throw new Error('Fetch failed: ' + res.status);
+          const w = await parseResponse(res);
+          words.push(String(w));
+        }
+        for(const w of words){
+          const li = document.createElement('li');
+          li.textContent = w;
+          list.appendChild(li);
+        }
+        return words;
+      } catch(err){
+        wordDiv.textContent = 'Error: ' + (err.message || err);
+        return null;
+      } finally{
+        status.textContent = '';
+        singleBtn.disabled = false;
+        fiveBtn.disabled = false;
+      }
+    }
+
+    singleBtn.addEventListener('click', fetchWord);
+    fiveBtn.addEventListener('click', fetchFive);
+  </script>
+</body>
+</html>
